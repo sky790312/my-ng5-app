@@ -1,0 +1,15 @@
+@import '~scss/variables';
+
+/* AppComponent's private CSS styles */
+.app-tabs {
+  display: flex;
+
+  .tab {
+    padding: 5px 10px;
+    color: $gray;
+
+    &:hover, &.active {
+      color: $blue;
+    }
+  }
+}

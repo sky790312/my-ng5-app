@@ -1,0 +1,16 @@
+<h1 class="app-title">{{title}}</h1>
+<nav class="app-tabs">
+  <a
+    class="tab"
+    routerLink="/hashtag-search"
+    [routerLinkActive]="'active'">
+    Hashtag search
+  </a>
+  <a 
+    class="tab"
+    routerLink="/user-search"
+    [routerLinkActive]="'active'">
+    User search
+  </a>
+</nav>
+<router-outlet></router-outlet>

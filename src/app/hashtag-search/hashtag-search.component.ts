@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { PER_LIST_ITEMS_LENGTH } from '../constants';
 import { Tweet } from '../tweet';
 import { TweetService } from '../tweet.service';
-import { ComParentChildService } from '../service/com-parent-child.service';
 import { chunk } from '../utils';
 @Component({
   selector: 'app-hashtag-search',
@@ -16,17 +15,12 @@ export class HashtagSearchComponent implements OnInit {
 
   constructor(
     private TweetService: TweetService,
-    private comparentchildservice: ComParentChildService 
   ) { }
 
   ngOnInit() {
     this.getTweets()
-    this.subscription = this.comparentchildservice.on('call-parent').subscribe(() => this.parentFunction())
   }
 
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
   onPageChange(pagination) {
     console.log('in parent function', pagination)
   }

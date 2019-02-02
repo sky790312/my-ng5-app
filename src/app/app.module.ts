@@ -4,7 +4,6 @@ import { FormsModule }    from '@angular/forms';
 import { HttpClientModule }    from '@angular/common/http';
 
 import { AppRoutingModule }     from './app-routing.module';
-import { ComParentChildService } from './service/com-parent-child.service';
 import { TweetService } from './tweet.service';
 
 import { AppComponent }         from './app.component';
@@ -29,7 +28,6 @@ import { IPaginationComponent } from './i-pagination/i-pagination.component';
     IPaginationComponent,
   ],
   providers: [
-    ComParentChildService,
     TweetService
   ],
   bootstrap: [ AppComponent ]

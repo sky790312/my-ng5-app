@@ -1,4 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
+
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/mergeMap';
+import "rxjs/add/operator/map";
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/delay';
+
 import { PER_LIST_ITEMS_LENGTH } from '../constants';
 import { Tweet } from '../tweet';
 import { TweetService } from '../tweet.service';
@@ -14,25 +24,40 @@ export class HashtagSearchComponent implements OnInit {
   perListItemsLength: number
   totalItemsLength: number
 
+  hashtagSearchInput: string
+  search: string
+  keyUp = new Subject<string>()
+
   constructor(
     private TweetService: TweetService,
-  ) { }
+  ) {
+    this.onHashtagSearch()
+  }
 
   ngOnInit() {
-    this.getTweets()
+    // this.getTweetsByHashtag('Python')
   }
 
   onPageChange(pagination: number) {
     this.filterTweets = [].concat([], this.tweets[pagination - 1])
   }
 
-  getTweets() {
-    this.TweetService.getTweets()
+  onHashtagSearch() {
+    this.keyUp
+      .map(value => (event.target as HTMLInputElement).value)
+      .debounceTime(300)
+      .distinctUntilChanged()
+      .flatMap(search => Observable.of(search).delay(300))
+      .subscribe(hashtag => this.getTweetsByHashtag(hashtag))
+  }
+
+  getTweetsByHashtag(hashtag: string) {
+    this.TweetService.getTweetsByHashtag(hashtag)
       .subscribe(tweets => {
         this.tweets = chunk(tweets, PER_LIST_ITEMS_LENGTH)
         this.filterTweets = [].concat([], this.tweets[0])
-        this.totalItemsLength = tweets.length;
-        this.perListItemsLength = PER_LIST_ITEMS_LENGTH;
+        this.totalItemsLength = tweets.length
+        this.perListItemsLength = PER_LIST_ITEMS_LENGTH
       });
   }
 }

@@ -11,7 +11,7 @@ export class ITableComponent implements OnChanges {
   constructor(
   ) { }
 
-  ngOnChanges() {
-    console.log('items: ', this.items)
+  ngOnChanges () {
+    
   }
 }

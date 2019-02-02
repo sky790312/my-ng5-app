@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '../environments/environment';
 
 import { Observable } from 'rxjs/Observable';
 import { of } from 'rxjs/observable/of';
@@ -14,14 +15,22 @@ const httpOptions = {
 @Injectable()
 export class TweetService {
 
-  private tweetsUrl = 'https://am-twitter-scrape.herokuapp.com/hashtags/Python?pages_limit=3&wait=0';  // URL to web api
-
   constructor(
     private http: HttpClient
   ) { }
 
-  getTweets (): Observable<Tweet[]> {
-    return this.http.get<Tweet[]>(this.tweetsUrl)
+  getTweetsByHashtag(hashtag: string): Observable<Tweet[]> {
+    const tweetsUrl = `${environment.serverUrl}/hashtags/${hashtag}?pages_limit=3&wait=0`
+    return this.http.get<Tweet[]>(tweetsUrl)
+      .pipe(
+        tap(tweets => console.log(tweets)),
+        catchError(this.handleError('getTweets', []))
+      );
+  }
+
+  getTweetsByUser(user: string): Observable<Tweet[]> {
+    const tweetsUrl = `${environment.serverUrl}/users/${user}?pages_limit=3&wait=0`
+    return this.http.get<Tweet[]>(tweetsUrl)
       .pipe(
         tap(tweets => console.log(tweets)),
         catchError(this.handleError('getTweets', []))

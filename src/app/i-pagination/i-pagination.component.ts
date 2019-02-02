@@ -11,16 +11,15 @@ export class IPaginationComponent implements OnChanges {
   @Output() onPageChange = new EventEmitter<number>()
 
   paginations: number[]
-  currentPage: number
+  currentPage: number = 1
   
 
   constructor( 
   ) { 
-    this.currentPage = 1
   }
 
   ngOnChanges(changes: any) {
-    if (!changes['perListItemsLength'].currentValue || !changes['totalItemsLength'].currentValue) {
+    if (!changes['totalItemsLength'].currentValue) {
       return
     }
 

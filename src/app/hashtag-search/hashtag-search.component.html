@@ -1,10 +1,11 @@
 <div class="hashtag-search-input-container">
-<label for="hashtag-search-input">
-  <p>Hashtag serach</p>
-  <input
-    id="hashtag-search-input"
-    type="text">
-</label>
+  <label for="hashtag-search-input">
+    <p>Hashtag serach</p>
+    <input
+      id="hashtag-search-input"
+      type="text"
+      (keyup)='keyUp.next($event)'>
+  </label>
 </div>
 <div class="table-container">
   <app-i-table

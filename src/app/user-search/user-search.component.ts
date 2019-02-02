@@ -12,7 +12,7 @@ import 'rxjs/add/operator/delay';
 import { PER_LIST_ITEMS_LENGTH } from '../constants';
 import { Tweet } from '../tweet';
 import { TweetService } from '../tweet.service';
-import { chunk } from '../utils';
+import { chunk, truncate, formatDate } from '../utils';
 
 @Component({
   selector: 'app-user-search',
@@ -52,10 +52,26 @@ export class UserSearchComponent implements OnInit {
   getTweetsByUser(user: string) {
     this.TweetService.getTweetsByUser(user)
       .subscribe(tweets => {
-        this.tweets = chunk(tweets, PER_LIST_ITEMS_LENGTH)
+        const formatTweets = this.formatTweets(tweets)
+        this.tweets = chunk(formatTweets, PER_LIST_ITEMS_LENGTH)
         this.filterTweets = [].concat([], this.tweets[0])
         this.totalItemsLength = tweets.length
         this.perListItemsLength = PER_LIST_ITEMS_LENGTH
-      });
+      })
+  }
+
+  formatTweets(tweets: Tweet[]) {
+    return tweets.map(tweet => {
+      tweet.text.length > 50
+        ? truncate(tweet.text, 50)
+        : tweet.text
+      tweet.hashtags = (tweet.hashtags && tweet.hashtags.length) > 2
+        ? tweet.hashtags.splice(2)
+        : tweet.hashtags
+      const dateArray = tweet.date.split('-')
+      const date = new Date(dateArray[dateArray.length - 1])
+      tweet.date = formatDate(date)
+      return tweet
+    })
   }
 }

@@ -4,11 +4,15 @@ import { FormsModule }    from '@angular/forms';
 import { HttpClientModule }    from '@angular/common/http';
 
 import { AppRoutingModule }     from './app-routing.module';
+import { ComParentChildService } from './service/com-parent-child.service';
+import { TweetService } from './tweet.service';
 
 import { AppComponent }         from './app.component';
-import { TweetService }          from './tweet.service';
 import { UserSearchComponent } from './user-search/user-search.component';
 import { HashtagSearchComponent } from './hashtag-search/hashtag-search.component';
+
+import { ITableComponent } from './i-table/i-table.component';
+import { IPaginationComponent } from './i-pagination/i-pagination.component';
 
 @NgModule({
   imports: [
@@ -21,8 +25,13 @@ import { HashtagSearchComponent } from './hashtag-search/hashtag-search.componen
     AppComponent,
     UserSearchComponent,
     HashtagSearchComponent,
+    ITableComponent,
+    IPaginationComponent,
   ],
-  providers: [ TweetService ],
+  providers: [
+    ComParentChildService,
+    TweetService
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

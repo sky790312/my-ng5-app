@@ -23,15 +23,12 @@ export class HashtagSearchComponent implements OnInit {
   filterTweets: Tweet[]
   perListItemsLength: number
   totalItemsLength: number
-
-  hashtagSearchInput: string
-  search: string
-  keyUp = new Subject<string>()
+  onHashtagSearch = new Subject<string>()
 
   constructor(
     private TweetService: TweetService,
   ) {
-    this.onHashtagSearch()
+    this.onHashtagSearchListener()
   }
 
   ngOnInit() {
@@ -42,8 +39,8 @@ export class HashtagSearchComponent implements OnInit {
     this.filterTweets = [].concat([], this.tweets[pagination - 1])
   }
 
-  onHashtagSearch() {
-    this.keyUp
+  onHashtagSearchListener() {
+    this.onHashtagSearch
       .map(value => (event.target as HTMLInputElement).value)
       .debounceTime(300)
       .distinctUntilChanged()

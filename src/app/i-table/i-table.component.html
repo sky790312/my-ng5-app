@@ -6,7 +6,9 @@
   <div class="flex-1">Hashtags</div>
   <div class="flex-1">Date</div>
 </div>
-<div *ngFor="let item of items" class="flex table-body">
+<div
+  *ngFor="let item of items"
+  class="flex table-body">
   <div class="flex-2" data-head="Tweet">
     {{item.text}}
   </div>
@@ -20,7 +22,9 @@
     {{item.retweets}}
   </div>
   <div class="flex-1" data-head="Hashtags">
-    <span *ngFor="let hashtag of item.hashtags"> {{hashtag}} </span>
+    <ng-container *ngFor="let hashtag of item.hashtags">
+      <span> {{hashtag}} </span>
+    </ng-container>
   </div>
   <div class="flex-1" data-head="Date">
     {{item.date}}

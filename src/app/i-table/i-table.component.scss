@@ -25,6 +25,10 @@
   min-width: 200px;
 }
 
+.table-header, .table-body {
+  margin-bottom: 20px;
+}
+
 .table-header {
   > [class^="flex-"] {
     color: $gray;

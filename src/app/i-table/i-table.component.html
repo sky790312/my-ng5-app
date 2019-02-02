@@ -6,23 +6,23 @@
   <div class="flex-1">Hashtags</div>
   <div class="flex-1">Date</div>
 </div>
-<div *ngFor="let tweet of tweets" class="flex table-body">
+<div *ngFor="let item of items" class="flex table-body">
   <div class="flex-2" data-head="Tweet">
-    {{tweet.text}}
+    {{item.text}}
   </div>
   <div class="flex-1" data-head="Likes">
-    {{tweet.likes}}
+    {{item.likes}}
   </div>
   <div class="flex-1 replies" data-head="Replies">
-    {{tweet.replies}}
+    {{item.replies}}
   </div>
   <div class="flex-1 retweets" data-head="Retweets">
-    {{tweet.retweets}}
+    {{item.retweets}}
   </div>
   <div class="flex-1" data-head="Hashtags">
-    <span *ngFor="let hashtag of tweet.hashtags">{{hashtag}}</span>
+    <span *ngFor="let hashtag of item.hashtags">{{hashtag}}</span>
   </div>
   <div class="flex-1" data-head="Date">
-    {{tweet.date}}
+    {{item.date}}
   </div>
 </div>

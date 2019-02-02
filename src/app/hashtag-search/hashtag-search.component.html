@@ -1,8 +1,18 @@
-<app-i-table
-  [tweets]="tweets">
-</app-i-table>
+<div class="hashtag-search-input-container">
+<label for="hashtag-search-input">
+  <p>Hashtag serach</p>
+  <input
+    id="hashtag-search-input"
+    type="text">
+</label>
+</div>
+<div class="table-container">
+  <app-i-table
+    [items]="filterTweets">
+  </app-i-table>
+</div>
 <app-i-pagination
   [totalItemsLength]="totalItemsLength"
   [perListItemsLength]="perListItemsLength"
-  (onPageChange)="onPageChange(pagination)">
+  (onPageChange)="onPageChange($event)">
 </app-i-pagination>

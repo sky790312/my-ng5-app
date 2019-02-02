@@ -9,9 +9,10 @@ import { chunk } from '../utils';
   styleUrls: ['./hashtag-search.component.scss']
 })
 export class HashtagSearchComponent implements OnInit {
-  tweets: Tweet[];
-  perListItemsLength: number;
-  totalItemsLength: number;
+  tweets: Tweet[]
+  filterTweets: Tweet[]
+  perListItemsLength: number
+  totalItemsLength: number
 
   constructor(
     private TweetService: TweetService,
@@ -21,14 +22,15 @@ export class HashtagSearchComponent implements OnInit {
     this.getTweets()
   }
 
-  onPageChange(pagination) {
-    console.log('in parent function', pagination)
+  onPageChange(pagination: number) {
+    this.filterTweets = [].concat([], this.tweets[pagination - 1])
   }
 
   getTweets() {
     this.TweetService.getTweets()
       .subscribe(tweets => {
-        this.tweets = chunk(tweets, PER_LIST_ITEMS_LENGTH)[0]
+        this.tweets = chunk(tweets, PER_LIST_ITEMS_LENGTH)
+        this.filterTweets = [].concat([], this.tweets[0])
         this.totalItemsLength = tweets.length;
         this.perListItemsLength = PER_LIST_ITEMS_LENGTH;
       });

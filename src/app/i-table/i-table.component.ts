@@ -1,17 +1,17 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Tweet } from '../tweet';
+import { Component, OnChanges, Input } from '@angular/core';
 
 @Component({
   selector: 'app-i-table',
   templateUrl: './i-table.component.html',
   styleUrls: ['./i-table.component.scss']
 })
-export class ITableComponent implements OnInit {
-  @Input() tweets: Tweet[]
+export class ITableComponent implements OnChanges {
+  @Input() items: any[]
 
   constructor(
   ) { }
 
-  ngOnInit() {
+  ngOnChanges() {
+    console.log('items: ', this.items)
   }
 }

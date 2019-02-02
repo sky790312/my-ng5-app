@@ -8,7 +8,7 @@ import { Component, Input, Output, OnChanges, EventEmitter } from '@angular/core
 export class IPaginationComponent implements OnChanges {
   @Input() perListItemsLength: number
   @Input() totalItemsLength: number
-  @Output() onPageChange = new EventEmitter<string>()
+  @Output() onPageChange = new EventEmitter<number>()
 
   paginations: number[]
   currentPage: number
@@ -20,7 +20,6 @@ export class IPaginationComponent implements OnChanges {
   }
 
   ngOnChanges(changes: any) {
-    console.log(changes)
     if (!changes['perListItemsLength'].currentValue || !changes['totalItemsLength'].currentValue) {
       return
     }
@@ -33,7 +32,7 @@ export class IPaginationComponent implements OnChanges {
     this.paginations = Array(paginationsLength).fill(0).map((x, i) => i + 1)
   };
 
-  gotoPage = pagination => {
+  gotoPage = (pagination: number) => {
     this.currentPage = pagination
     this.onPageChange.next(pagination)
   }

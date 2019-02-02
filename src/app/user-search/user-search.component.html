@@ -12,6 +12,7 @@
   </app-i-table>
 </div>
 <app-i-pagination
+  *ngIf="totalItemsLength"
   [totalItemsLength]="totalItemsLength"
   [perListItemsLength]="perListItemsLength"
   (onPageChange)="onPageChange($event)">

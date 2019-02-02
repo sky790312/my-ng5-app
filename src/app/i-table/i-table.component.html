@@ -7,22 +7,29 @@
   <div class="flex-1">Date</div>
 </div>
 <div *ngFor="let item of items" class="flex table-body">
-  <div class="flex-2" data-head="Tweet">
-    {{item.text}}
-  </div>
-  <div class="flex-1" data-head="Likes">
-    {{item.likes}}
-  </div>
-  <div class="flex-1 replies" data-head="Replies">
-    {{item.replies}}
-  </div>
-  <div class="flex-1 retweets" data-head="Retweets">
-    {{item.retweets}}
-  </div>
-  <div class="flex-1" data-head="Hashtags">
-      <span *ngFor="let hashtag of item.hashtags"> {{hashtag}} </span>
-  </div>
-  <div class="flex-1" data-head="Date">
-    {{item.date}}
-  </div>
+  <ng-container *ngIf="item; else emptyTable">
+    <div class="flex-2" data-head="Tweet">
+      {{item.text}}
+    </div>
+    <div class="flex-1" data-head="Likes">
+      {{item.likes}}
+    </div>
+    <div class="flex-1 replies" data-head="Replies">
+      {{item.replies}}
+    </div>
+    <div class="flex-1 retweets" data-head="Retweets">
+      {{item.retweets}}
+    </div>
+      <div class="flex-1" data-head="Hashtags">
+      <ng-container *ngIf="items.hashtags && items.hashtags.length">
+        <span *ngFor="let hashtag of item.hashtags"> {{hashtag}} </span>
+      </ng-container>
+      </div>
+    <div class="flex-1" data-head="Date">
+      {{item.date}}
+    </div>
+  </ng-container>
+  <ng-template #emptyTable>
+    <div>No Data</div>
+  </ng-template>
 </div>

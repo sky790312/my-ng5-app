@@ -1,0 +1,21 @@
+@import 'variables';
+
+.paginations {
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+
+  .pagination {
+    padding: 5px 10px;
+    margin: 5px;
+    cursor: pointer;
+    border: 1px solid $ligt-gray;
+
+    &.current {
+      color: white;
+      background-color: $blue;
+      cursor: default;
+    }
+  }
+}

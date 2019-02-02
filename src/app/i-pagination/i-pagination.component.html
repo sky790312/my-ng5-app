@@ -1,0 +1,11 @@
+<nav>
+  <ul class="paginations">
+    <li
+      *ngFor="let pagination of paginations"
+      class="pagination"
+      [ngClass]="{'current': currentPage === pagination}"
+      (click)="gotoPage(pagination)">
+      {{ pagination }}
+    </li>
+  </ul>
+</nav>

@@ -1,0 +1,28 @@
+<div class="flex table-header">
+  <div class="flex-2">Tweet</div>
+  <div class="flex-1">Likes</div>
+  <div class="flex-1">Replies</div>
+  <div class="flex-1">Retweets</div>
+  <div class="flex-1">Hashtags</div>
+  <div class="flex-1">Date</div>
+</div>
+<div *ngFor="let tweet of tweets" class="flex table-body">
+  <div class="flex-2" data-head="Tweet">
+    {{tweet.text}}
+  </div>
+  <div class="flex-1" data-head="Likes">
+    {{tweet.likes}}
+  </div>
+  <div class="flex-1 replies" data-head="Replies">
+    {{tweet.replies}}
+  </div>
+  <div class="flex-1 retweets" data-head="Retweets">
+    {{tweet.retweets}}
+  </div>
+  <div class="flex-1" data-head="Hashtags">
+    <span *ngFor="let hashtag of tweet.hashtags">{{hashtag}}</span>
+  </div>
+  <div class="flex-1" data-head="Date">
+    {{tweet.date}}
+  </div>
+</div>

@@ -17,12 +17,8 @@
 }
 
 [class^="flex-"] {
-  margin: 2px;
-  padding: 2px;
+  margin: 10px 20px;
   overflow: auto;
-}
-.tweet {
-  min-width: 200px;
 }
 
 .table-header, .table-body {
@@ -49,6 +45,7 @@
     position: relative;
     margin-bottom: .5em;
     flex-direction: column;
+    border-bottom: 1px solid $gray;
 
     > [class^="flex-"] {
       margin-left: 140px;
@@ -64,4 +61,14 @@
       }
     }
   }
+}
+
+.tweet {
+  min-width: 200px;
+}
+
+.likes, .replies, .retweets, .hashtags, .date {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

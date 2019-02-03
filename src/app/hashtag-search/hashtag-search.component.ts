@@ -4,7 +4,7 @@ import { Subject } from 'rxjs/Subject';
 
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/operator/mergeMap';
+import 'rxjs/add/operator/switchMap';
 import "rxjs/add/operator/map";
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/delay';
@@ -44,24 +44,24 @@ export class HashtagSearchComponent implements OnInit {
       .map(value => (event.target as HTMLInputElement).value)
       .debounceTime(300)
       .distinctUntilChanged()
-      .flatMap(search => Observable.of(search).delay(300))
+      .switchMap(search => Observable.of(search).delay(300))
       .subscribe(hashtag => this.getTweets('hashtags', hashtag))
   }
 
   getTweets(type: string, value: string) {
     this.TweetService.getTweets(type, value)
-      .subscribe(
-        tweets => {
-          const formatTweets = this.TweetService.formatTweets(tweets)
-          this.tweets = chunk(formatTweets, PER_LIST_ITEMS_LENGTH)
-          this.filterTweets = [].concat([], this.tweets[0])
-          this.totalItemsLength = tweets.length
-          this.perListItemsLength = PER_LIST_ITEMS_LENGTH
-        },
-        err => {
+      .subscribe(tweets => {
+        if (!tweets.length) {
           this.filterTweets = []
           this.totalItemsLength = 0
-        },
-      )
+          return
+        }
+
+        const formatTweets = this.TweetService.formatTweets(tweets)
+        this.tweets = chunk(formatTweets, PER_LIST_ITEMS_LENGTH)
+        this.filterTweets = [].concat([], this.tweets[0])
+        this.totalItemsLength = tweets.length
+        this.perListItemsLength = PER_LIST_ITEMS_LENGTH
+      })
   }
 }

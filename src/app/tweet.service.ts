@@ -24,14 +24,14 @@ export class TweetService {
     const tweetsUrl = `${environment.serverUrl}/${type}/${value}?pages_limit=3&wait=0`
     return this.http.get<Tweet[]>(tweetsUrl)
       .pipe(
-        tap(tweets => console.log(tweets)),
-        catchError(this.handleError('getTweets', []))
+        tap(tweets => console.log('getTweets success: ', tweets)),
+        catchError(this.handleError('getTweets error', []))
       );
   }
 
   formatTweets(tweets: Tweet[]) {
     return tweets.map(tweet => {
-      tweet.text.length > 50
+      tweet.text = tweet.text.length > 50
         ? truncate(tweet.text, 50)
         : tweet.text
       tweet.hashtags = (tweet.hashtags && tweet.hashtags.length) > 2
@@ -46,9 +46,9 @@ export class TweetService {
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      console.error(error); 
-      console.log(`${operation} failed: ${error.message}`);
-      return of(result as T);
+      console.error(error)
+      console.log(`${operation} failed: ${error.message}`)
+      return of(result as T)
     };
   }
 }

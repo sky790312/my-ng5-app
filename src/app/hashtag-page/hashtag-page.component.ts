@@ -13,11 +13,11 @@ import { TweetService } from '../tweet.service';
 import { chunk } from '../utils';
 
 @Component({
-  selector: 'app-hashtag-search',
-  templateUrl: './hashtag-search.component.html',
-  styleUrls: ['./hashtag-search.component.scss']
+  selector: 'app-hashtag-page',
+  templateUrl: './hashtag-page.component.html',
+  styleUrls: ['./hashtag-page.component.scss']
 })
-export class HashtagSearchComponent implements OnInit {
+export class HashtagPageComponent implements OnInit {
   tweets: Tweet[] = []
   filterTweets: Tweet[] = []
   perListItemsLength: number

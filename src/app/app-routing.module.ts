@@ -1,13 +1,13 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { HashtagSearchComponent } from './hashtag-search/hashtag-search.component';
-import { UserSearchComponent } from './user-search/user-search.component';
+import { HashtagPageComponent } from './hashtag-page/hashtag-page.component';
+import { UserPageComponent } from './user-page/user-page.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/hashtag-search', pathMatch: 'full' },
-  { path: 'hashtag-search', component: HashtagSearchComponent },
-  { path: 'user-search', component: UserSearchComponent },
+  { path: '', redirectTo: '/hashtag-page', pathMatch: 'full' },
+  { path: 'hashtag-page', component: HashtagPageComponent },
+  { path: 'user-page', component: UserPageComponent },
 ];
 
 @NgModule({

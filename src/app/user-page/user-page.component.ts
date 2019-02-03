@@ -13,11 +13,11 @@ import { TweetService } from '../tweet.service';
 import { chunk } from '../utils';
 
 @Component({
-  selector: 'app-user-search',
-  templateUrl: './user-search.component.html',
-  styleUrls: ['./user-search.component.scss']
+  selector: 'app-user-page',
+  templateUrl: './user-page.component.html',
+  styleUrls: ['./user-page.component.scss']
 })
-export class UserSearchComponent implements OnInit {
+export class UserPageComponent implements OnInit {
   tweets: Tweet[] = []
   filterTweets: Tweet[] = []
   perListItemsLength: number

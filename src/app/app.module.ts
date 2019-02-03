@@ -7,8 +7,8 @@ import { AppRoutingModule }     from './app-routing.module';
 import { TweetService } from './tweet.service';
 
 import { AppComponent }         from './app.component';
-import { UserSearchComponent } from './user-search/user-search.component';
-import { HashtagSearchComponent } from './hashtag-search/hashtag-search.component';
+import { UserPageComponent } from './user-page/user-page.component';
+import { HashtagPageComponent } from './hashtag-page/hashtag-page.component';
 
 import { ITableComponent } from './i-table/i-table.component';
 import { IPaginationComponent } from './i-pagination/i-pagination.component';
@@ -23,8 +23,8 @@ import { IPaginationComponent } from './i-pagination/i-pagination.component';
   ],
   declarations: [
     AppComponent,
-    UserSearchComponent,
-    HashtagSearchComponent,
+    UserPageComponent,
+    HashtagPageComponent,
     ITableComponent,
     IPaginationComponent,
   ],

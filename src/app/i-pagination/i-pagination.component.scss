@@ -12,10 +12,9 @@
     cursor: pointer;
     border: 1px solid $ligt-gray;
 
-    &.current {
+    &:hover, &.current {
       color: white;
-      background-color: $blue;
-      cursor: default;
+      background-color: $blue;      
     }
   }
 }

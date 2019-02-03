@@ -1,11 +1,23 @@
 <nav>
   <ul class="paginations">
     <li
+      *ngIf="currentPage - 1"
+      class="prev pagination"
+      (click)="gotoPage(currentPage - 1)">
+      <
+    </li>
+    <li
       *ngFor="let pagination of paginations"
       class="pagination"
       [ngClass]="{'current': currentPage === pagination}"
       (click)="gotoPage(pagination)">
       {{ pagination }}
+    </li>
+    <li
+      *ngIf="currentPage < paginations.length"
+      class="next pagination"
+      (click)="gotoPage(currentPage + 1)">
+      >
     </li>
   </ul>
 </nav>

@@ -32,6 +32,10 @@ export class IPaginationComponent implements OnChanges {
   };
 
   gotoPage = (pagination: number) => {
+    if (pagination === this.currentPage) {
+      return
+    }
+
     this.currentPage = pagination
     this.onPageChange.next(pagination)
   }

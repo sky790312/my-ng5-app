@@ -36,9 +36,53 @@ button {
 .common-search-container {
   margin-bottom: 20px;
 
+  label {
+    position: relative;
+  }
+
+  input {
+    border-radius: 5px;
+    border: 1px solid $gray;
+    padding: 10px;
+    width: 280px;
+  }
+
   p {
     color: $gray;
     margin-bottom: 5px;
+  }
+}
+
+.icon-search-container {
+  position: absolute;
+  top: -7px;
+  right: 3px;
+  width: 36px;
+  height: 36px;
+  overflow: hidden;
+  cursor: pointer;
+
+  .icon-search {
+    position: relative;
+    top: 5px;
+    left: 8px;
+    width: 50%;
+    height: 50%;
+    opacity: 1;
+    border-radius: 50%;
+    border: 3px solid $gray;
+    
+    &:after {
+      content: "";
+      position: absolute;
+      bottom: -9px;
+      right: -2px;
+      width: 4px;
+      border-radius: 3px;
+      transform: rotate(-45deg);
+      height: 10px;
+      background-color: $gray;
+    }
   }
 }
 

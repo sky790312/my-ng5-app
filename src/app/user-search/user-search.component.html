@@ -3,15 +3,20 @@
     <p>User serach</p>
     <input
       id="user-search-input"
-      type="text"
-      (keyup)='onUserSearch.next($event)'>
+      type="search"
+      placeholder="Search by User"
+      [formControl]="searchInput">
     <div class="icon-search-container">
       <div class="icon-search"></div>
     </div>
   </label>
 </div>
-<div class="table-container">
-  <app-i-table [items]="filterTweets">
+<div
+  class="table-container"
+  *ngIf="hasSearch">
+  <app-i-table
+    [items]="filterTweets"
+    [isLoading]="isLoading">
   </app-i-table>
 </div>
 <app-i-pagination

@@ -4,14 +4,19 @@
     <input
       id="hashtag-search-input"
       type="text"
-      (keyup)='onHashtagSearch.next($event)'>
+      placeholder="Search by Hashtag"
+      [formControl]="searchInput">
     <div class="icon-search-container">
       <div class="icon-search"></div>
     </div>
   </label>
 </div>
-<div class="table-container">
-  <app-i-table [items]="filterTweets">
+<div
+  class="table-container"
+  *ngIf="hasSearch">
+  <app-i-table
+    [items]="filterTweets"
+    [isLoading]="isLoading">
   </app-i-table>
 </div>
 <app-i-pagination

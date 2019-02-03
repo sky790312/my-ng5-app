@@ -37,6 +37,9 @@ export class TweetService {
       tweet.hashtags = (tweet.hashtags && tweet.hashtags.length) > 2
         ? tweet.hashtags.splice(2)
         : tweet.hashtags
+      tweet.likes = tweet.likes || '-'
+      tweet.replies = tweet.replies || '-'
+      tweet.retweets = tweet.retweets || '-'
       const dateArray = tweet.date.split('-')
       const date = new Date(dateArray[dateArray.length - 1])
       tweet.date = formatDate(date)

@@ -6,30 +6,35 @@
   <div class="flex-1 hashtags">Hashtags</div>
   <div class="flex-1 date">Date</div>
 </div>
-<ng-container *ngIf="items && items.length; else emptyTables">
-  <div *ngFor="let item of items" class="flex table-body">
-    <div class="flex-2 text" data-head="Tweet">
-      {{item.text}}
-    </div>
-    <div class="flex-1 likes" data-head="Likes">
-      {{item.likes}}
-    </div>
-    <div class="flex-1 replies" data-head="Replies">
-      {{item.replies}}
-    </div>
-    <div class="flex-1 retweets" data-head="Retweets">
-      {{item.retweets}}
-    </div>
-      <div class="flex-1 hashtags" data-head="Hashtags">
-      <ng-container *ngIf="items.hashtags && items.hashtags.length">
-        <span *ngFor="let hashtag of item.hashtags"> {{hashtag}} </span>
-      </ng-container>
+<div *ngIf="isLoading; else loadingCompleted">
+  Loading...
+</div>
+<ng-template #loadingCompleted>
+  <ng-container *ngIf="items && items.length; else emptyTables">
+    <div *ngFor="let item of items" class="flex table-body">
+      <div class="flex-2 text" data-head="Tweet">
+        {{item.text}}
       </div>
-    <div class="flex-1 date" data-head="Date">
-      {{item.date}}
+      <div class="flex-1 likes" data-head="Likes">
+        {{item.likes}}
+      </div>
+      <div class="flex-1 replies" data-head="Replies">
+        {{item.replies}}
+      </div>
+      <div class="flex-1 retweets" data-head="Retweets">
+        {{item.retweets}}
+      </div>
+        <div class="flex-1 hashtags" data-head="Hashtags">
+        <ng-container *ngIf="items.hashtags && items.hashtags.length">
+          <span *ngFor="let hashtag of item.hashtags"> {{hashtag}} </span>
+        </ng-container>
+        </div>
+      <div class="flex-1 date" data-head="Date">
+        {{item.date}}
+      </div>
     </div>
-  </div>
-</ng-container>
-<ng-template #emptyTables>
-  <div>No Data</div>
+  </ng-container>
+  <ng-template #emptyTables>
+    <div>No Data</div>
+  </ng-template>
 </ng-template>

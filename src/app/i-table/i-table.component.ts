@@ -7,6 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ITableComponent implements OnInit {
   @Input() items: any[] = []
+  @Input() isLoading: boolean = false
 
   constructor(
   ) { }

@@ -1,7 +1,7 @@
 {
   "name": "angular-io-example",
   "version": "1.0.0",
-  "private": true,
+  "private": false,
   "description": "Example project from an angular.io guide.",
   "scripts": {
     "ng": "ng",
